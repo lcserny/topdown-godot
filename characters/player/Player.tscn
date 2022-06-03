@@ -164,13 +164,14 @@ animation = "IdleRight"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=9]
 blend_point_0/node = SubResource( 10 )
-blend_point_0/pos = Vector2( -1, 1 )
+blend_point_0/pos = Vector2( -1.1, 1 )
 blend_point_1/node = SubResource( 11 )
-blend_point_1/pos = Vector2( -1, -1 )
+blend_point_1/pos = Vector2( -1.1, -1 )
 blend_point_2/node = SubResource( 12 )
 blend_point_2/pos = Vector2( 1, -1 )
 blend_point_3/node = SubResource( 13 )
 blend_point_3/pos = Vector2( 1, 1 )
+min_space = Vector2( -1.1, -1 )
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id=14]
@@ -187,13 +188,14 @@ animation = "RunRight"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=18]
 blend_point_0/node = SubResource( 14 )
-blend_point_0/pos = Vector2( -1, 1 )
+blend_point_0/pos = Vector2( -1.1, 1 )
 blend_point_1/node = SubResource( 15 )
-blend_point_1/pos = Vector2( -1, -1 )
+blend_point_1/pos = Vector2( -1.1, -1 )
 blend_point_2/node = SubResource( 16 )
 blend_point_2/pos = Vector2( 1, -1 )
 blend_point_3/node = SubResource( 17 )
 blend_point_3/pos = Vector2( 1, 1 )
+min_space = Vector2( -1.1, -1 )
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
@@ -234,6 +236,7 @@ anims/RunRight = SubResource( 3 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 7 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 8 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
