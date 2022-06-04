@@ -4,20 +4,22 @@
 [ext_resource path="res://environment/rock/Rock.gd" type="Script" id=2]
 [ext_resource path="res://combat/Hurtbox.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6, 5.5 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 7.0
 
-[node name="Rock" type="Node2D"]
+[node name="Rock" type="StaticBody2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -8, -8 )
+polygon = PoolVector2Array( 0, 8, 4, 5, 14, 5, 15, 7, 15, 14, 13, 16, 6, 16, 0, 12 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 3 )]
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2( 8, 8.5 )
 shape = SubResource( 1 )
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

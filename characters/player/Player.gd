@@ -13,12 +13,13 @@ var state = MOVE
 
 var velocity = Vector2.ZERO
 
+onready var hitboxCollision = $HitboxPivot/Hitbox/CollisionShape2D
 onready var animationTree = $AnimationTree
-onready var animationPlayer = $AnimationPlayer
 onready var animationState = animationTree.get("parameters/playback")
 
 func _ready():
-	$AnimationTree.active = true
+	animationTree.active = true
+	hitboxCollision.disabled = true
 
 # no physics done, custom velocity used
 func _process(delta):

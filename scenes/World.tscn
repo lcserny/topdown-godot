@@ -329,33 +329,34 @@ position = Vector2( 232, 32 )
 [node name="Rocks" type="YSort" parent="YSort"]
 
 [node name="Rock" parent="YSort/Rocks" instance=ExtResource( 6 )]
-position = Vector2( 168, 160 )
+position = Vector2( 176, 168 )
 
 [node name="Rock2" parent="YSort/Rocks" instance=ExtResource( 6 )]
-position = Vector2( 184, 160 )
+position = Vector2( 192, 168 )
 
 [node name="Rock3" parent="YSort/Rocks" instance=ExtResource( 6 )]
-position = Vector2( 152, 160 )
+position = Vector2( 160, 168 )
 
 [node name="Rock4" parent="YSort/Rocks" instance=ExtResource( 6 )]
-position = Vector2( 64, 48 )
+position = Vector2( 72, 56 )
 
 [node name="Rock5" parent="YSort/Rocks" instance=ExtResource( 6 )]
-position = Vector2( 80, 48 )
+position = Vector2( 88, 56 )
 
 [node name="Rock6" parent="YSort/Rocks" instance=ExtResource( 6 )]
-position = Vector2( 120, 48 )
+position = Vector2( 128, 56 )
 
 [node name="Rock7" parent="YSort/Rocks" instance=ExtResource( 6 )]
-position = Vector2( 136, 48 )
+position = Vector2( 144, 56 )
 
 [node name="Rock8" parent="YSort/Rocks" instance=ExtResource( 6 )]
-position = Vector2( 304, 104 )
+position = Vector2( 312, 104 )
 
 [node name="Rock9" parent="YSort/Rocks" instance=ExtResource( 6 )]
-position = Vector2( 304, 120 )
+position = Vector2( 312, 120 )
 
 [node name="Rock10" parent="YSort/Rocks" instance=ExtResource( 6 )]
-position = Vector2( 304, 160 )
+position = Vector2( 312, 168 )
 
 [node name="Rock11" parent="YSort/Rocks" instance=ExtResource( 6 )]
+position = Vector2( 8, 8 )
