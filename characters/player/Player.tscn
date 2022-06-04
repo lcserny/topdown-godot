@@ -443,4 +443,7 @@ position = Vector2( 9, 0 )
 [node name="CollisionShape2D" parent="HitboxPivot/Hitbox" index="0"]
 shape = SubResource( 32 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
 [editable path="HitboxPivot/Hitbox"]
