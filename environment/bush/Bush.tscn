@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/mystic_woods_free_v0.2/sprites/objects/bush.png" type="Texture" id=1]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 6.0
+radius = 5.50001
 height = 10.0
 
 [node name="Bush" type="StaticBody2D"]
