@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/mystic_woods_free_v0.2/sprites/characters/player.png" type="Texture" id=2]
@@ -198,6 +198,90 @@ tracks/1/keys = {
 "values": [ false, false ]
 }
 
+[sub_resource type="Animation" id=34]
+resource_name = "LayDownLeft"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "lay_finished"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "LayDownRight"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "lay_finished"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
@@ -355,6 +439,30 @@ blend_point_3/pos = Vector2( 1, 1 )
 min_space = Vector2( -1.1, -1 )
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "LayDownLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "LayDownLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "LayDownRight"
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "LayDownRight"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=35]
+blend_point_0/node = SubResource( 38 )
+blend_point_0/pos = Vector2( -1.1, 1 )
+blend_point_1/node = SubResource( 39 )
+blend_point_1/pos = Vector2( -1.1, -1 )
+blend_point_2/node = SubResource( 40 )
+blend_point_2/pos = Vector2( 1, -1 )
+blend_point_3/node = SubResource( 41 )
+blend_point_3/pos = Vector2( 1, 1 )
+min_space = Vector2( -1.1, -1 )
+blend_mode = 1
+
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "RunLeft"
 
@@ -387,15 +495,22 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
 [sub_resource type="AnimationNodeStateMachine" id=7]
 states/Attack/node = SubResource( 29 )
 states/Attack/position = Vector2( 489, 254 )
 states/Idle/node = SubResource( 9 )
 states/Idle/position = Vector2( 489, 164 )
+states/Lay/node = SubResource( 35 )
+states/Lay/position = Vector2( 489, 69 )
 states/Run/node = SubResource( 18 )
 states/Run/position = Vector2( 729, 164 )
-transitions = [ "Idle", "Run", SubResource( 19 ), "Run", "Idle", SubResource( 20 ), "Idle", "Attack", SubResource( 30 ), "Attack", "Idle", SubResource( 31 ) ]
+transitions = [ "Idle", "Run", SubResource( 19 ), "Run", "Idle", SubResource( 20 ), "Idle", "Attack", SubResource( 30 ), "Attack", "Idle", SubResource( 31 ), "Idle", "Lay", SubResource( 36 ), "Lay", "Idle", SubResource( 37 ) ]
 start_node = "Idle"
+graph_offset = Vector2( 19, 7 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
@@ -404,6 +519,7 @@ radius = 5.0
 height = 10.0
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -422,6 +538,8 @@ anims/AttackLeft = SubResource( 24 )
 anims/AttackRight = SubResource( 23 )
 anims/IdleLeft = SubResource( 5 )
 anims/IdleRight = SubResource( 4 )
+anims/LayDownLeft = SubResource( 34 )
+anims/LayDownRight = SubResource( 33 )
 anims/RESET = SubResource( 2 )
 anims/RunLeft = SubResource( 6 )
 anims/RunRight = SubResource( 3 )
@@ -432,6 +550,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 8 )
 parameters/Attack/blend_position = Vector2( 0, 0 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
+parameters/Lay/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
@@ -439,6 +558,8 @@ position = Vector2( 0, -3 )
 
 [node name="Hitbox" parent="HitboxPivot" instance=ExtResource( 3 )]
 position = Vector2( 9, 0 )
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape2D" parent="HitboxPivot/Hitbox" index="0"]
 shape = SubResource( 32 )

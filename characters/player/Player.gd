@@ -6,6 +6,7 @@ const MAX_SPEED = 100
 
 enum {
 	MOVE,
+	LAY,
 	ATTACK
 }
 
@@ -21,18 +22,20 @@ func _ready():
 	animationTree.active = true
 	hitboxCollision.disabled = true
 
-# no physics done, custom velocity used
-func _process(delta):
+# do get back up from lay with inverse animation
+func _physics_process(delta):
 	match state:
 		MOVE:
 			move_state(delta)
+		LAY:
+			lay_state(delta)
 		ATTACK:
 			attack_state(delta)
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
 
 	if input_vector != Vector2.ZERO:
@@ -40,6 +43,7 @@ func move_state(delta):
 			animationTree.set("parameters/Idle/blend_position", input_vector)
 			animationTree.set("parameters/Run/blend_position", input_vector)
 			animationTree.set("parameters/Attack/blend_position", input_vector)
+			animationTree.set("parameters/Lay/blend_position", input_vector)
 		animationState.travel("Run")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
@@ -47,8 +51,17 @@ func move_state(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	velocity = move_and_slide(velocity)
 	
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("lay"):
+		state = LAY
+	elif Input.is_action_just_pressed("attack"):
 		state = ATTACK
+
+func lay_state(delta):
+	animationState.travel("Lay")
+
+func lay_finished():
+	#state = MOVE
+	pass
 
 func attack_state(delta):
 	velocity = Vector2.ZERO
