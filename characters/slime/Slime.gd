@@ -6,7 +6,11 @@ var knockback = Vector2.ZERO
 
 const FRICTION = 600
 
+onready var animatedSprite = $AnimatedSprite
 onready var stats = $Stats
+
+func _ready():
+	animatedSprite.playing = true
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
