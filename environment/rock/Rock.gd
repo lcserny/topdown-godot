@@ -1,11 +1,10 @@
 extends Node2D
 
-onready var RockDestroyedEffect = load("res://environment/rock/RockDestroyedEffect.tscn")
+const RockDestroyedEffect = preload("res://environment/rock/DestroyedRockEffect.tscn")
 
 func create_destroy_effect():
 	var destroyEffect = RockDestroyedEffect.instance()
-	var world = get_tree().current_scene
-	world.add_child(destroyEffect)
+	get_parent().add_child(destroyEffect)
 	destroyEffect.global_position = global_position
 
 func _on_Hurtbox_area_entered(area):

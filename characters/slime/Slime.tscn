@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/mystic_woods_free_v0.2/sprites/characters/slime.png" type="Texture" id=1]
 [ext_resource path="res://combat/Hurtbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://characters/slime/Slime.gd" type="Script" id=3]
+[ext_resource path="res://combat/Stats.tscn" type="PackedScene" id=4]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
@@ -35,16 +36,18 @@ extents = Vector2( 6, 3 )
 radius = 7.0
 
 [node name="Slime" type="KinematicBody2D"]
+position = Vector2( 0, -5 )
 collision_layer = 16
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -5 )
 frames = SubResource( 6 )
 animation = "Idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5 )
 shape = SubResource( 1 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 2 )]
@@ -53,9 +56,13 @@ collision_mask = 0
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 modulate = Color( 0, 1, 0.133333, 1 )
-position = Vector2( 0, -2 )
+position = Vector2( 0, 2 )
 shape = SubResource( 7 )
 
+[node name="Stats" parent="." instance=ExtResource( 4 )]
+max_health = 3
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 
 [editable path="Hurtbox"]

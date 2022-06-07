@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-const FRICTION = 1000
-const ACCELERATION = 1000
-const MAX_SPEED = 100
+export var FRICTION = 1000
+export var ACCELERATION = 1000
+export var MAX_SPEED = 100
 
 enum {
 	MOVE,
@@ -15,9 +15,9 @@ var state = MOVE
 
 var velocity = Vector2.ZERO
 
+onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var hitboxCollision = $HitboxPivot/SwordHitbox/CollisionShape2D
 onready var animationTree = $AnimationTree
-onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var animationState = animationTree.get("parameters/playback")
 
 func _ready():
