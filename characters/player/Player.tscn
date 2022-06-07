@@ -1,9 +1,10 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/mystic_woods_free_v0.2/sprites/characters/player.png" type="Texture" id=2]
 [ext_resource path="res://combat/Hitbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://characters/player/SwordHitbox.gd" type="Script" id=4]
+[ext_resource path="res://combat/Stats.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 1.0
@@ -687,5 +688,8 @@ shape = SubResource( 32 )
 current = true
 smoothing_enabled = true
 smoothing_speed = 1.0
+
+[node name="Stats" parent="." instance=ExtResource( 5 )]
+max_health = 5
 
 [editable path="HitboxPivot/SwordHitbox"]

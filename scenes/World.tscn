@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://environment/bush/Bush.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://environment/rock/Rock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/light2.png" type="Texture" id=7]
 [ext_resource path="res://characters/slime/Slime.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/World.gd" type="Script" id=9]
 
 [sub_resource type="TileSet" id=1]
 9/name = "plains.png 9"
@@ -279,6 +280,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 14, 16, 0, 16 )
 1/z_index = 0
 
 [node name="World" type="Node2D"]
+script = ExtResource( 9 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 136, 104 )
