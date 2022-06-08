@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const PlayerKilledEffect = preload("res://characters/player/PlayerKilledEffect.tscn")
+
 export var FRICTION = 1000
 export var ACCELERATION = 1000
 export var MAX_SPEED = 100
@@ -12,15 +14,19 @@ enum {
 }
 
 var state = MOVE
-
 var velocity = Vector2.ZERO
+var stats = PlayerStats
 
+onready var sprite = $Sprite
 onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var hitboxCollision = $HitboxPivot/SwordHitbox/CollisionShape2D
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var hurtbox = $Hurtbox
 
 func _ready():
+	stats.connect("no_health", self, "player_death")
+	
 	animationTree.active = true
 	hitboxCollision.disabled = true
 
@@ -35,6 +41,14 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("lay") && state == LAY_FINISHED:
 		getup_state(delta)
+
+func player_death():
+	print("Player died!")
+	queue_free()
+	
+	var effect = PlayerKilledEffect.instance()
+	effect.global_position = sprite.global_position
+	get_tree().current_scene.add_child(effect)
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -81,3 +95,8 @@ func attack_state(delta):
 
 func attack_finished():
 	state = MOVE
+
+func _on_Hurtbox_area_entered(area):
+	stats.health -= 1
+	hurtbox.start_invincibility(0.5)
+	hurtbox.create_hit_effect()

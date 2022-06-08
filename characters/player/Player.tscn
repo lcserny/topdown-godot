@@ -1,10 +1,11 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/mystic_woods_free_v0.2/sprites/characters/player.png" type="Texture" id=2]
 [ext_resource path="res://combat/Hitbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://characters/player/SwordHitbox.gd" type="Script" id=4]
 [ext_resource path="res://combat/Stats.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/Hurtbox.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 1.0
@@ -634,6 +635,10 @@ graph_offset = Vector2( 38, -96 )
 radius = 5.0
 height = 10.0
 
+[sub_resource type="CapsuleShape2D" id=51]
+radius = 5.0
+height = 4.0
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
@@ -684,12 +689,18 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
 shape = SubResource( 32 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-smoothing_enabled = true
-smoothing_speed = 1.0
-
-[node name="Stats" parent="." instance=ExtResource( 5 )]
+[node name="NotUsedStats" parent="." instance=ExtResource( 5 )]
 max_health = 5
 
+[node name="Hurtbox" parent="." instance=ExtResource( 6 )]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, -5 )
+shape = SubResource( 51 )
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
 [editable path="HitboxPivot/SwordHitbox"]
+[editable path="Hurtbox"]

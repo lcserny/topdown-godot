@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://characters/player/PlayerKilledEffect.gd" type="Script" id=1]
+[ext_resource path="res://assets/mystic_woods_free_v0.2/sprites/characters/player.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 192, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 192, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 192, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": false,
+"name": "Animate",
+"speed": 5.0
+} ]
+
+[node name="PlayerKilledEffect" type="AnimatedSprite"]
+position = Vector2( 0, -16 )
+frames = SubResource( 1 )
+animation = "Animate"
+script = ExtResource( 1 )

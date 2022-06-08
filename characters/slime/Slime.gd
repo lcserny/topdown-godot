@@ -13,14 +13,15 @@ var state = IDLE
 var knockback = Vector2.ZERO
 var velocity = Vector2.ZERO
 
-export var FRICTION = 600
-export var ACCELERATION = 1000
+export var FRICTION = 200
+export var ACCELERATION = 500
 export var MAX_SPEED = 50
-export var KNOCKBACK = 250
+export var KNOCKBACK = 150
 
 onready var playerDetectionZone = $PlayerDetectionZone
 onready var animatedSprite = $AnimatedSprite
 onready var stats = $Stats
+onready var hurtbox = $Hurtbox
 
 func _ready():
 	animatedSprite.playing = true
@@ -53,10 +54,11 @@ func seek_player():
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
 	knockback = area.knockback_vector * KNOCKBACK
+	hurtbox.create_hit_effect()
 
 func _on_Stats_no_health():
 	queue_free()
 	
 	var slimeKilledEffect = SlimeKilledEffect.instance()
-	get_parent().add_child(slimeKilledEffect)
 	slimeKilledEffect.global_position = global_position
+	get_parent().add_child(slimeKilledEffect)

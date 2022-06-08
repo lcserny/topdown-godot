@@ -282,6 +282,12 @@ points = PoolVector2Array( 0, 0, 16, 0, 14, 16, 0, 16 )
 [node name="World" type="Node2D"]
 script = ExtResource( 9 )
 
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2( 160, 88 )
+current = true
+smoothing_enabled = true
+smoothing_speed = 1.0
+
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 136, 104 )
 scale = Vector2( 5.675, 5.51111 )
@@ -320,7 +326,7 @@ position = Vector2( 248, 72 )
 position = Vector2( 48, 40 )
 
 [node name="Slime3" parent="YSort/Slimes" instance=ExtResource( 8 )]
-position = Vector2( 128, 136 )
+position = Vector2( 128, 152 )
 
 [node name="Hills" type="TileMap" parent="YSort"]
 tile_set = SubResource( 3 )
