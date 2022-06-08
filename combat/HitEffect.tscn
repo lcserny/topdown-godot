@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://effects/Effect.gd" type="Script" id=1]
+[ext_resource path="res://assets/mystic_woods_free_v0.2/sprites/particles/dust_particles_01.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 3 )
+region = Rect2( 12, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 3 )
+region = Rect2( 24, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 3 )
+region = Rect2( 36, 0, 12, 12 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 15.0
+} ]
+
+[node name="HitEffect" type="AnimatedSprite"]
+frames = SubResource( 1 )
+animation = "Animate"
+script = ExtResource( 1 )
