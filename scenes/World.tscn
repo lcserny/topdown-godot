@@ -380,7 +380,7 @@ script = ExtResource( 9 )
 position = Vector2( 160, 88 )
 current = true
 smoothing_enabled = true
-smoothing_speed = 1.0
+smoothing_speed = 4.0
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 136, 104 )
