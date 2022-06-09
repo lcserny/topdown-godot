@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/mystic_woods_free_v0.2/sprites/characters/slime.png" type="Texture" id=1]
 [ext_resource path="res://combat/Hurtbox.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://combat/Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://characters/PlayerDetectionZone.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/Hitbox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/SoftCollision.tscn" type="PackedScene" id=7]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
@@ -42,6 +43,9 @@ radius = 63.2851
 
 [sub_resource type="CircleShape2D" id=9]
 radius = 6.0
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 7.0
 
 [node name="Slime" type="KinematicBody2D"]
 position = Vector2( 0, -5 )
@@ -81,9 +85,16 @@ collision_mask = 4
 position = Vector2( 0, 2 )
 shape = SubResource( 9 )
 
+[node name="SoftCollision" parent="." instance=ExtResource( 7 )]
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+position = Vector2( 0, 2 )
+shape = SubResource( 10 )
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 
 [editable path="Hurtbox"]
 [editable path="PlayerDetectionZone"]
 [editable path="Hitbox"]
+[editable path="SoftCollision"]

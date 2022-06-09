@@ -17,11 +17,13 @@ export var FRICTION = 200
 export var ACCELERATION = 500
 export var MAX_SPEED = 50
 export var KNOCKBACK = 150
+export var PUSHBACK = 800
 
 onready var playerDetectionZone = $PlayerDetectionZone
 onready var animatedSprite = $AnimatedSprite
 onready var stats = $Stats
 onready var hurtbox = $Hurtbox
+onready var softCollision = $SoftCollision
 
 func _ready():
 	animatedSprite.playing = true
@@ -45,6 +47,9 @@ func _physics_process(delta):
 				state = IDLE
 			animatedSprite.flip_h = velocity.x < 0
 	
+	var push_vector = softCollision.get_push_vector()
+	if softCollision.is_colliding(push_vector):
+		velocity += push_vector * delta * PUSHBACK
 	velocity = move_and_slide(velocity)
 
 func seek_player():
