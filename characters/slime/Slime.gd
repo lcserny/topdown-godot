@@ -26,6 +26,7 @@ onready var stats = $Stats
 onready var hurtbox = $Hurtbox
 onready var softCollision = $SoftCollision
 onready var wanderController= $WanderController
+onready var animPlayer = $AnimationPlayer
 
 func _ready():
 	animatedSprite.playing = true
@@ -82,6 +83,7 @@ func choose_random_state(states: Array):
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
 	knockback = area.knockback_vector * KNOCKBACK
+	hurtbox.start_invincibility(0.3)
 	hurtbox.create_hit_effect()
 
 func _on_Stats_no_health():
@@ -90,3 +92,9 @@ func _on_Stats_no_health():
 	var slimeKilledEffect = SlimeKilledEffect.instance()
 	slimeKilledEffect.global_position = global_position
 	get_parent().add_child(slimeKilledEffect)
+
+func _on_Hurtbox_invincibility_started():
+	animPlayer.play("Start")
+
+func _on_Hurtbox_invincibility_ended():
+	animPlayer.play("Stop")

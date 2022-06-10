@@ -23,6 +23,7 @@ onready var hitboxCollision = $HitboxPivot/SwordHitbox/CollisionShape2D
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var hurtbox = $Hurtbox
+onready var blinkAnim = $BlinkAnimationPlayer
 
 func _ready():
 	stats.connect("no_health", self, "player_death")
@@ -97,6 +98,12 @@ func attack_finished():
 	state = MOVE
 
 func _on_Hurtbox_area_entered(area):
-	stats.health -= 1
-	hurtbox.start_invincibility(0.5)
+	stats.health -= area.damage
+	hurtbox.start_invincibility(0.6)
 	hurtbox.create_hit_effect()
+
+func _on_Hurtbox_invincibility_started():
+	blinkAnim.play("Start")
+
+func _on_Hurtbox_invincibility_ended():
+	blinkAnim.play("Stop")
