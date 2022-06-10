@@ -29,7 +29,7 @@ func _ready():
 	stats.connect("no_health", self, "player_death")
 	
 	animationTree.active = true
-	hitboxCollision.disabled = true
+	hitboxCollision.set_deferred("disabled", true)
 
 func _physics_process(delta):
 	match state:

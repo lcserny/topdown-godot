@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/mystic_woods_free_v0.2/sprites/characters/player.png" type="Texture" id=2]
@@ -673,21 +673,6 @@ height = 10.0
 radius = 5.0
 height = 4.0
 
-[sub_resource type="Animation" id=56]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:material:shader_param/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-
 [sub_resource type="Animation" id=52]
 resource_name = "Start"
 length = 0.2
@@ -761,7 +746,6 @@ parameters/Lay/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
-visible = false
 position = Vector2( 0, -3 )
 
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource( 3 )]
@@ -777,7 +761,6 @@ shape = SubResource( 32 )
 max_health = 5
 
 [node name="Hurtbox" parent="." instance=ExtResource( 6 )]
-visible = false
 collision_layer = 4
 collision_mask = 0
 
@@ -789,7 +772,6 @@ shape = SubResource( 51 )
 volume_db = -10.0
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 56 )
 anims/Start = SubResource( 52 )
 anims/Stop = SubResource( 53 )
 
