@@ -1,0 +1,23 @@
+[gd_scene format=2]
+
+[node name="WorldBorders" type="Node"]
+
+[node name="TopBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBorder"]
+
+[node name="BottomBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBorder"]
+
+[node name="LeftBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder"]
+
+[node name="RightBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorder"]

@@ -87,7 +87,7 @@ tracks/5/path = NodePath("AudioStreamPlayer")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/keys = {
 "clips": [ {
 "end_offset": 0.0,
@@ -167,7 +167,7 @@ tracks/5/path = NodePath("AudioStreamPlayer")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/keys = {
 "clips": [ {
 "end_offset": 0.0,
@@ -769,6 +769,7 @@ position = Vector2( 0, -5 )
 shape = SubResource( 51 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 volume_db = -10.0
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
