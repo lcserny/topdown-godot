@@ -406,6 +406,9 @@ texture = ExtResource( 7 )
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 160, 88 )
 
+[node name="MoveCamera" type="RemoteTransform2D" parent="YSort/Player"]
+remote_path = NodePath("../../../MainCamera")
+
 [node name="Slimes" type="YSort" parent="YSort"]
 
 [node name="Slime" parent="YSort/Slimes" instance=ExtResource( 8 )]
@@ -691,4 +694,6 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 4.0
 
-[node name="HealthUI" parent="." instance=ExtResource( 10 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 10 )]
